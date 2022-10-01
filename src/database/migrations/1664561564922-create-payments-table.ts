@@ -45,6 +45,8 @@ export class createPaymentsTable1664561564922 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropForeignKey(this.tableName, "student_plan_id");
+        await queryRunner.dropTable(this.tableName);
     }
 
 }
