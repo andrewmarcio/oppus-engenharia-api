@@ -13,6 +13,6 @@ export default new DataSource({
   username: configService.get('DATABASE_USER'),
   password: configService.get('DATABASE_PASSWORD'),
   database: configService.get('DATABASE_DB'),
-  entities: [],
-  migrations: [__dirname + '/../../database/migrations/**/*.{ts,js}'],
+  entities: [__dirname + './../../domain/**/*.entity.ts'],
+  migrations: [__dirname + '/../../database/migrations/**/*{.ts,.js}'],
 });
