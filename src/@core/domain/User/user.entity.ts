@@ -12,7 +12,7 @@ export class User extends BaseEntity {
     @Column("varchar", { length: 50 })
     email: string
 
-    @Column({select: false})
+    @Column({select: true})
     password: string
 
     @CreateDateColumn({ name: 'created_at' })
