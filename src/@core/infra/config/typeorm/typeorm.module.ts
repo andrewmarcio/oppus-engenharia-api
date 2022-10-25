@@ -1,17 +1,20 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Company } from 'src/@core/domain/company/company.entity';
 import { User } from 'src/@core/domain/User/user.entity';
+import { EnvironmentModule } from '../environment/environment.module';
+import { EnvironmentService } from '../environment/environment.service';
 
-export const getTypeOrmModuleOptions = (config: ConfigService): TypeOrmModuleOptions => {
+export const getTypeOrmModuleOptions = (config: EnvironmentService): TypeOrmModuleOptions => {
+  
   return ({
     type: 'mysql',
-    host: config.get("DATABASE_HOST"),
-    port: config.get("DATABASE_PORT"),
-    username: config.get("DATABASE_USER"),
-    password: config.get("DATABASE_PASSWORD"),
-    database: config.get("DATABASE_DB"),
-    entities: [User],
+    host: config.getDatabaseHost(),
+    port: config.getDatabasePort(),
+    username: config.getDatabaseUser(),
+    password: config.getDatabasePassword(),
+    database: config.getDatabaseName(),
+    entities: [User, Company],
     synchronize: false,
     // schema: process.env.DATABASE_SCHEMA,
     ssl: {
@@ -22,10 +25,10 @@ export const getTypeOrmModuleOptions = (config: ConfigService): TypeOrmModuleOpt
 
 @Module({
   imports: [
-    ConfigModule,
+    EnvironmentModule,
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
+      imports: [EnvironmentModule],
+      inject: [EnvironmentService],
       useFactory: getTypeOrmModuleOptions,
     }),
   ],
