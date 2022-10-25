@@ -22,7 +22,7 @@ export class createCompaniesTable1664503652906 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
-                        name: "cpnj",
+                        name: "cnpj",
                         type: "varchar",
                         length: "14"
                     },

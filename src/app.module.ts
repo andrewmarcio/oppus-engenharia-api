@@ -5,13 +5,15 @@ import { TypeOrmConfigModule } from './@core/infra/config/typeorm/typeorm.module
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './@core/application/User/user.module';
 import { AuthModule } from './@core/application/Auth/auth.module';
+import { CompanyModule } from './@core/application/company/company.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
     TypeOrmConfigModule,
+    AuthModule,
     UserModule,
-    AuthModule
+    CompanyModule
   ],
   controllers: [AppController],
   providers: [AppService],
