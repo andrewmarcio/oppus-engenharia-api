@@ -37,8 +37,8 @@ export class AuthService {
     private async validateUser(credentials: LoginDto): Promise<User>
     {
         const user = await this.userService.getByEmail(credentials.email);
-
-        if(user && this.encrypter.check(credentials.password, user.password)){
+        
+        if(user && await this.encrypter.check(credentials.password, user.password)){
             return user;
         }
         

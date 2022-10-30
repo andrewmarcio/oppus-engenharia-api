@@ -3,37 +3,40 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/@core/domain/User/user.entity';
 import { Encrypter } from 'src/@core/infra/encrypt/encrypter';
 import { Repository } from 'typeorm';
+import { BaseService } from '../base/base.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
-export class UserService {
+export class UserService extends BaseService<User> {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    protected repository: Repository<User>,
     private encrypt: Encrypter
-  ) { }
-
-  async findAll(): Promise<User[]> {
-    return await this.usersRepository.find();
-  }
-
-  async findOne(id: number): Promise<User> {
-    return await this.usersRepository.findOneBy({ id });
+  ) { 
+    super(repository)
   }
 
   async getByEmail(email: string): Promise<User> {
-    return await this.usersRepository.findOneByOrFail({ email });
+    return await this.repository.findOneByOrFail({ email });
   }
 
   async create(payload: CreateUserDto): Promise<User> {
 
     payload.password = await this.encrypt.hash(payload.password);
-    const user = await this.usersRepository.create(payload);
+    const user = await this.repository.create(payload);
     
-    return await this.usersRepository.save(user);
+    return await this.repository.save(user);
   }
 
-  async remove(id: number): Promise<void> {
-    await this.usersRepository.delete(id);
+  async update(id: number, payload: UpdateUserDto): Promise<User> {
+
+    if(payload.password) {
+      payload.password = await this.encrypt.hash(payload.password);
+    }
+    
+    await this.repository.update(id, payload);
+    
+    return await this.findOne(id);
   }
 }
