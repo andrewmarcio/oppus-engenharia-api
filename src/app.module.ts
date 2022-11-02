@@ -7,6 +7,9 @@ import { UserModule } from './@core/application/User/user.module';
 import { AuthModule } from './@core/application/Auth/auth.module';
 import { CompanyModule } from './@core/application/company/company.module';
 import { PlanModule } from './@core/application/plan/plan.module';
+import { CourseModule } from './@core/application/course/course.module';
+import { CourseModuleModule } from './@core/application/course/module/course-module.module';
+import { ModuleLessonModule } from './@core/application/course/module/lesson/module-lesson.module';
 
 @Module({
   imports: [
@@ -15,7 +18,10 @@ import { PlanModule } from './@core/application/plan/plan.module';
     AuthModule,
     UserModule,
     CompanyModule,
-    PlanModule
+    PlanModule,
+    CourseModule,
+    CourseModuleModule,
+    ModuleLessonModule
   ],
   controllers: [AppController],
   providers: [AppService],
