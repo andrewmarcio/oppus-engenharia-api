@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Plan } from "src/@core/domain/plan/plan.entity";
-import { PlanController } from "./plan.controller";
+import { PlanController } from "../../infra/http/controllers/plan/plan.controller";
 import { PlanService } from "./plan.service";
 
 @Module({
