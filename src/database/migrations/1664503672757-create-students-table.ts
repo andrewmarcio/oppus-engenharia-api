@@ -18,6 +18,10 @@ export class createStudentsTable1664503672757 implements MigrationInterface {
                         generationStrategy: "increment"
                     },
                     {
+                        name: "name",
+                        type: "varchar",
+                    },
+                    {
                         name: "cpf",
                         type: "varchar",
                     },

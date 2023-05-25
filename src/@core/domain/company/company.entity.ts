@@ -1,4 +1,14 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+    BaseEntity, 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    JoinColumn, 
+    OneToMany, 
+    PrimaryGeneratedColumn, 
+    UpdateDateColumn 
+} from "typeorm";
+import { CompanyStudent } from "./student/company-student.entity";
 
 @Entity("companies")
 export class Company extends BaseEntity
@@ -18,5 +28,9 @@ export class Company extends BaseEntity
 
     @UpdateDateColumn({ name: 'updated_at' })
     UpdatedAt!: Date;
+
+    @OneToMany(() => CompanyStudent, (companyStudent) => companyStudent.company, { cascade: true })
+    @JoinColumn({ name: 'company_id' })
+    companyStudents: CompanyStudent[]
 
 }
