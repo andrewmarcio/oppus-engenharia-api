@@ -7,36 +7,41 @@ import { CourseModuleModule } from '@application/course/module/course-module.mod
 import { ModuleLessonModule } from '@application/course/module/lesson/module-lesson.module'
 import { PlanModule } from '@application/plan/plan.module'
 import { UserModule } from '@application/User/user.module'
+import { StudentModule } from '@application/student/student.module'
 
 @Module({
   imports: [
     RouterModule.register([
       {
-        path: 'auth',
+        path: '/auth',
         module: AuthModule,
       },
       {
-        path: 'users',
+        path: '/users',
         module: UserModule,
       },
       {
-        path: 'companies',
+        path: '/companies',
         module: CompanyModule,
       },
       {
-        path: 'plans',
+        path: '/plans',
         module: PlanModule,
       },
       {
-        path: 'courses',
+        path: '/students',
+        module: StudentModule,
+      },
+      {
+        path: '/courses',
         module: CourseModule,
         children: [
           {
-            path: 'modules',
+            path: '/modules',
             module: CourseModuleModule,
             children: [
               {
-                path: 'lessons',
+                path: '/lessons',
                 module: ModuleLessonModule,
               },
             ],

@@ -3,7 +3,7 @@ import { Token } from '@domain/auth/auth.interface'
 import { AuthService } from '@application/Auth/auth.service'
 import { LoginDto } from '@domain/auth/dto/login.dto'
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(private authService: AuthService) {}
 

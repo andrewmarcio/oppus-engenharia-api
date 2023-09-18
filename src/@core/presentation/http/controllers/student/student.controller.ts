@@ -2,7 +2,7 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put } from '@
 import { StudentService } from '@application/student/student.service'
 import { Student } from '@domain/student/student.entity'
 
-@Controller('students')
+@Controller()
 export class StudentController {
   constructor(public service: StudentService) {}
 

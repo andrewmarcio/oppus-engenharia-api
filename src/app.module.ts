@@ -11,6 +11,7 @@ import { CourseModule } from '@application/course/course.module'
 import { CourseModuleModule } from '@application/course/module/course-module.module'
 import { ModuleLessonModule } from '@application/course/module/lesson/module-lesson.module'
 import { StudentModule } from '@application/student/student.module'
+import { RoutesModule } from '@infra/router/router.module'
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { StudentModule } from '@application/student/student.module'
     CourseModuleModule,
     ModuleLessonModule,
     StudentModule,
+    RoutesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

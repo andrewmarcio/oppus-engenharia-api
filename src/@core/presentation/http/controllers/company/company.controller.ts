@@ -17,7 +17,7 @@ import { CreateCompanyDto } from '@domain/company/dto/create-company.dto'
 import { UpdateCompanyDto } from '@domain/company/dto/update-company.dto'
 
 @UseGuards(JwtAuthGuard)
-@Controller('companies')
+@Controller()
 export class CompanyController {
   constructor(private companyService: CompanyService) {}
 

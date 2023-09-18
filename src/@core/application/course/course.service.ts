@@ -14,6 +14,6 @@ export class CourseService extends BaseService<Course> {
   }
 
   async findOne(id: number): Promise<Course> {
-    return await this.repository.findOne({ where: { id }, relations: ['modules'] })
+    return await this.repository.findOne({ where: { id }, relations: ['modules', 'modules.lessons'] })
   }
 }
